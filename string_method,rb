@@ -1,0 +1,6 @@
+def your_string
+puts 'Write something'
+string = gets.chomp.length
+puts string
+end
+your_string
