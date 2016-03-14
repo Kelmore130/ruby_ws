@@ -7,12 +7,27 @@ class Account
     @balance = balance
     @pin = pin  
   end  
-  
-puts 'What is your name?'
-	@name = gets.chomp
 
-puts "#{@name}, please verify your four digit pin #."
-	@pin = gets.chomp.to_i
+	def welcome  
+	
+	puts "#{@name} please verify your four digit pin #."
+		input = gets.chomp.to_i
+		if @pin == input
+			puts 'Would you like to (1) check your balance, (2) make a withdrawal, (3) make a deposit?'
+			answer = gets.chomp.to_i
+			if answer == 1
+				puts balance
+			elsif answer == 2
+				withdrawal
+			elsif answer == 3 
+				deposit
+			end
+		else 
+			puts "Sorry, try again."
+		end
+
+
+	end
 
 
 	def name
@@ -23,22 +38,23 @@ puts "#{@name}, please verify your four digit pin #."
 		@balance
 	end
 
-	def pin
-		@pin
+
+	def withdrawal
+		puts 'How much would you like to withdrawal?'
+		amount = gets.chomp.to_i
+		puts "Your remaining balance is: $ #{@balance -= amount}"
 	end
 
-puts 'Do you need to display your balance?'
-bal = gets.chomp.downcase
-if bal == 'yes'
-puts
-elsif bal == 'no'
-puts  'thanks'
-else
-puts 'Please answer yes or no.'
+	def deposit
+		puts 'How much are you going to deposit?'
+		money = gets.chomp.to_i
+		puts "Your new balance is:  $#{@balance += money}"
+	end
+
+
+
+cust_1 = Account.new('Kelly', 200, 1234)
+
+
+cust_1.welcome
 end
-
-end
-
-cust_1 = Account.new('Honda', 'Fit', 'grey')
-
-puts "My car is a #{my_profile.brand} #{my_profile.name} and it is #{my_profile.color}."
